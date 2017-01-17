@@ -1,2 +1,2 @@
 # SmallSmallSmall
-SDKSample 为自己用 微信的包名，应用名，debug.keystore 写的支付Demo，这三个东西不能变，除非有商户账号。
+SDKSample 为自己用 微信的包名，应用名，debug.keystore 写的支付Demo，这三个东西不能变，除非有商户账号。MyTakePhotoTest 相机获取压缩路径的时候会报空指针
