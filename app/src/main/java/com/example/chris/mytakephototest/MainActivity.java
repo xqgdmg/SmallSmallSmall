@@ -56,8 +56,9 @@ public class MainActivity extends AppCompatActivity implements
         // onCreate 初始化
         getTakePhoto().onCreate(savedInstanceState);
 
+        setUp();// 一堆的设置,设置最好在 findViewById 之前，不然回去压缩路径的时候可能会空指针
+            
         initView();
-        setUp();// 一堆的设置
         initListener();
     }
 
