@@ -17,7 +17,6 @@ import android.provider.MediaStore.Images.Media;
 import android.text.TextUtils;
 
 import com.kollway.imagechooser.listener.OnTaskResultListener;
-import com.kollway.imagechooser.log.L;
 import com.kollway.imagechooser.model.ImageGroup;
 
 import java.io.File;
@@ -114,8 +113,6 @@ public class ImageLoadTask extends BaseTask {
                 }
             }
         } catch (Exception e) {
-            // 输出日志
-            L.e(e);
             return false;
         } finally {
             // 关闭游标

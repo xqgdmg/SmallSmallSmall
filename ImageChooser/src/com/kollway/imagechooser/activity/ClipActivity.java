@@ -3,6 +3,7 @@ package com.kollway.imagechooser.activity;
 import java.io.File;
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -23,7 +24,7 @@ import com.kollway.imagechooser.manager.ImageChooserManager;
 import com.kollway.imagechooser.manager.ImageChooserSettings;
 import com.kollway.imagechooser.utils.ImageTools;
 
-public class ClipActivity extends BaseActivity {
+public class ClipActivity extends Activity {
 	private ClipImageLayout mClipImageLayout;
 	private ArrayList<String> path;
 	private ProgressDialog loadingDialog;

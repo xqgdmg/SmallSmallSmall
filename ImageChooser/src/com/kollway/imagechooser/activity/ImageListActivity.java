@@ -10,6 +10,7 @@ package com.kollway.imagechooser.activity;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -29,7 +30,7 @@ import com.kollway.imagechooser.adaper.ImageListAdapter;
  * 
  * @author likebamboo
  */
-public class ImageListActivity extends BaseActivity implements OnItemClickListener {
+public class ImageListActivity extends Activity implements OnItemClickListener {
 
     /**
      * title
@@ -56,11 +57,6 @@ public class ImageListActivity extends BaseActivity implements OnItemClickListen
      */
     private ImageListAdapter mImageAdapter = null;
 
-    // add 照片的张数
-    public static final int picNum = 5;
-
-    // add 当前选中的张数
-    public static  int picNumSelected = 0;
 
     // add 保存照片 path 集合
     private ArrayList<String> picPathList = new ArrayList<String>();
@@ -93,7 +89,7 @@ public class ImageListActivity extends BaseActivity implements OnItemClickListen
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra("path", picPathList);
+                intent.putExtra("path", mImageAdapter.mSelectedList);
                 setResult(RESULT_OK, intent);
 
                 finish();
@@ -113,24 +109,27 @@ public class ImageListActivity extends BaseActivity implements OnItemClickListen
     }
 
     /**
-     * 尝试修改为可以选择选择多张图片,选完到 裁剪的页面
+     * todo 选择多张图片,选完到裁剪的页面
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
 
-        if (picNumSelected < picNum) {
-
-            picNumSelected = picNumSelected + 1;
-            picPathList.add(mImages.get(position));
-            // 调用 adapter 中的方法，选中 CheckBox
-            mImageAdapter.setCheckBox(position);
-            mImageAdapter.notifyDataSetChanged();
-        }else{
-            Toast.makeText(ImageListActivity.this,"只能选择" + picNum + "张图片哦",Toast.LENGTH_LONG).show();
-        }
-
+        mMyIteMClick.onMyIteMClick(position);
 
     }
+
+    /**
+     * 在此处添加接口回调
+     */
+    MyIteMClick mMyIteMClick;
+    public interface MyIteMClick{
+        void onMyIteMClick(int position);
+    }
+
+    public void setMyIteMClick(MyIteMClick myIteMClick){
+        this.mMyIteMClick = myIteMClick;
+    }
+
 
     /**
      * 一定要释放，不然数据会空
@@ -138,7 +137,5 @@ public class ImageListActivity extends BaseActivity implements OnItemClickListen
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        picNumSelected = 0;
-        picPathList.clear();
     }
 }

@@ -10,6 +10,7 @@ package com.kollway.imagechooser.activity;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask.Status;
@@ -39,7 +40,7 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
  * 
  * @author likebamboo
  */
-public class AlbumActivity extends BaseActivity implements OnItemClickListener {
+public class AlbumActivity extends Activity implements OnItemClickListener {
 	
 	public static final int REQUEST_CODE_CHOOSE_IMAGE = 100;
 	

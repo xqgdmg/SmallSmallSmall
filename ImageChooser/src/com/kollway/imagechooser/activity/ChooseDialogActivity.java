@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -31,7 +32,7 @@ import com.kollway.imagechooser.manager.ImageChooserManager;
 import com.kollway.imagechooser.manager.ImageChooserSettings;
 import com.kollway.imagechooser.utils.ImageTools;
 
-public class ChooseDialogActivity extends BaseActivity {
+public class ChooseDialogActivity extends Activity {
 
     private TextView tvTitle;
     private TextView mTvPhotograph;

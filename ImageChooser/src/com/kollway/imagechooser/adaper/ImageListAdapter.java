@@ -10,6 +10,7 @@ package com.kollway.imagechooser.adaper;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,8 +18,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.kollway.imagechooser.R;
+import com.kollway.imagechooser.activity.ImageListActivity;
 import com.kollway.imagechooser.loader.LocalImageLoader;
 import com.kollway.imagechooser.loader.LocalImageLoader.ImageCallBack;
 import com.kollway.imagechooser.utils.Util;
@@ -45,27 +48,60 @@ public class ImageListAdapter extends BaseAdapter {
     /**
      * 选中的图片列表
      */
-    private ArrayList<String> mSelectedList = new ArrayList<String>();
+    public ArrayList<String> mSelectedList = new ArrayList<String>();
 
     // help checkbox
-    private ArrayList<Integer> mCheckBox = new ArrayList<Integer>();
+    private ArrayList<String> mCheckBox = new ArrayList<String>();
 
     /**
      * 容器
      */
     private View mContainer = null;
 
-
+    private int picNumLimit = 5;
+    private int picNumCount = 0;
 
     public ImageListAdapter(Context context, ArrayList<String> list, View container) {
         mDataList = list;
         mContext = context;
         mSelectedList = Util.getSeletedImages(context);
         mContainer = container;
+
+
+    }
+
+    private void initListener() {
+        ImageListActivity imageListActivity = (ImageListActivity)mContext;
+        imageListActivity.setMyIteMClick(new ImageListActivity.MyIteMClick() {
+            @Override
+            public void onMyIteMClick(int position2) {
+
+
+                // 选中和不选中的逻辑
+                if (mCheckBox.contains(position2 + "" )){
+                    mCheckBox.remove(position2 + "");
+                    mSelectedList.remove(mDataList.get(Integer.parseInt(position2 + "")));
+                    picNumCount --;
+                }else {
+                    // 大于最大图片数量返回
+                    if (picNumCount >= picNumLimit){
+                        Toast.makeText(mContext,"不能选中超过" + picNumLimit + "张照片",Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+                    mCheckBox.add(position2 + "");
+                    mSelectedList.add(mDataList.get(Integer.parseInt(position2 + "")));// mDataList.get(Integer.getInteger(position2 + "" ))
+                    picNumCount ++;
+                }
+
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
     public int getCount() {
+        initListener();
         return mDataList.size();
     }
 
@@ -118,11 +154,19 @@ public class ImageListAdapter extends BaseAdapter {
             holder.mImageIv.setImageResource(R.drawable.pic_thumb);
         }
 
+        ImageListActivity imageListActivity = (ImageListActivity)mContext;
+        imageListActivity.setMyIteMClick(new ImageListActivity.MyIteMClick() {
+            @Override
+            public void onMyIteMClick(int position) {
+
+            }
+        });
+
         // item 点击 就加入集合
-                holder.mSelectedCb.setChecked(false);
+        holder.mSelectedCb.setChecked(false);
 //        // 该图片是否选中
-        for (Integer cb : mCheckBox) {
-            if (cb == position) {
+        for (String cb : mCheckBox) {
+            if (cb.equals(position + "") ) {
                 holder.mSelectedCb.setChecked(true);
             }
         }
@@ -130,12 +174,6 @@ public class ImageListAdapter extends BaseAdapter {
         return view;
     }
 
-    /**
-     * 提供设置CheckBox 选中的方法
-     */
-    public void setCheckBox(int position) {
-        mCheckBox.add(position);
-    }
 
     static class ViewHolder {
         public MyImageView mImageIv;
