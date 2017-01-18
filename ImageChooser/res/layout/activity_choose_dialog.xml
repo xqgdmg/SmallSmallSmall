@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/shape_bg_dialog"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:text="修改头像"
+            android:textColor="#333333"
+            android:textSize="17sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#D9D8D3" />
+
+        <TextView
+            android:id="@+id/tvPhotograph"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="8dp"
+            android:background="@drawable/sl_layout_bg"
+            android:drawableLeft="@drawable/ic_take_photo"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:text="拍照"
+            android:textColor="#666666"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#D9D8D3" />
+
+        <TextView
+            android:id="@+id/tvAlbums"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="8dp"
+            android:background="@drawable/sl_layout_bottom_radius"
+            android:drawableLeft="@drawable/ic_album"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:text="我的相册"
+            android:textColor="#666666"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
