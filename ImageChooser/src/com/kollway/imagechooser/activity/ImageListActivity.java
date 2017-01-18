@@ -118,16 +118,12 @@ public class ImageListActivity extends BaseActivity implements OnItemClickListen
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
 
-        //todo 可以选五张图，还要添加选中的UI效果
-            Log.e("TAG", "haha" + picNumSelected);
-
-
         if (picNumSelected < picNum) {
 
             picNumSelected = picNumSelected + 1;
             picPathList.add(mImages.get(position));
             // 调用 adapter 中的方法，选中 CheckBox
-//            mImageAdapter.setCheckBox(position);
+            mImageAdapter.setCheckBox(position);
             mImageAdapter.notifyDataSetChanged();
         }else{
             Toast.makeText(ImageListActivity.this,"只能选择" + picNum + "张图片哦",Toast.LENGTH_LONG).show();

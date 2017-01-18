@@ -47,6 +47,9 @@ public class ImageListAdapter extends BaseAdapter {
      */
     private ArrayList<String> mSelectedList = new ArrayList<String>();
 
+    // help checkbox
+    private ArrayList<Integer> mCheckBox = new ArrayList<Integer>();
+
     /**
      * 容器
      */
@@ -87,7 +90,7 @@ public class ImageListAdapter extends BaseAdapter {
             view = LayoutInflater.from(mContext).inflate(R.layout.image_list_item, null);
             holder.mImageIv = (MyImageView)view.findViewById(R.id.list_item_iv);
             holder.mClickArea = view.findViewById(R.id.list_item_cb_click_area);
-//            holder.mSelectedCb = (CheckBox)view.findViewById(R.id.list_item_cb);
+            holder.mSelectedCb = (CheckBox)view.findViewById(R.id.list_item_cb);
             view.setTag(holder);
         } else {
             holder = (ViewHolder)view.getTag();
@@ -115,67 +118,31 @@ public class ImageListAdapter extends BaseAdapter {
             holder.mImageIv.setImageResource(R.drawable.pic_thumb);
         }
 
-//        holder.mSelectedCb.setChecked(false);
+        // item 点击 就加入集合
+                holder.mSelectedCb.setChecked(false);
 //        // 该图片是否选中
-//        for (String selected : mSelectedList) {
-//            if (selected.equals(path)) {
-//                holder.mSelectedCb.setChecked(true);
-//            }
-//        }
-
-        // 可点区域单击事件
-//        holder.mClickArea.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                boolean checked = holder.mSelectedCb.isChecked();
-//                holder.mSelectedCb.setChecked(!checked);
-//                if (!checked) {
-//                    addImage(path);
-//                } else {
-//                    deleteImage(path);
-//                }
-//            }
-//        });
+        for (Integer cb : mCheckBox) {
+            if (cb == position) {
+                holder.mSelectedCb.setChecked(true);
+            }
+        }
 
         return view;
     }
 
     /**
-     * 将图片地址添加到已选择列表中
-     * 
-     * @param path
+     * 提供设置CheckBox 选中的方法
      */
-    private void addImage(String path) {
-        if (mSelectedList.contains(path)) {
-            return;
-        }
-        mSelectedList.add(path);
+    public void setCheckBox(int position) {
+        mCheckBox.add(position);
     }
 
-    /**
-     * 将图片地址从已选择列表中删除
-     * 
-     * @param path
-     */
-    private void deleteImage(String path) {
-        mSelectedList.remove(path);
-    }
-
-    /**
-     * 获取已选中的图片列表
-     * 
-     * @return
-     */
-    public ArrayList<String> getSelectedImgs() {
-        return mSelectedList;
-    }
-    
     static class ViewHolder {
         public MyImageView mImageIv;
 
         public View mClickArea;
 
-//        public CheckBox mSelectedCb;
+        public CheckBox mSelectedCb;
 
     }
 

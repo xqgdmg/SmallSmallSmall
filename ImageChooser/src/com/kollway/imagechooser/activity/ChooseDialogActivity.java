@@ -103,7 +103,7 @@ public class ChooseDialogActivity extends BaseActivity {
 
     private void findViews() {
         relLayout = (RelativeLayout) findViewById(R.id.relLayout);
-        mTvPhotograph = (TextView) findViewById(R.id.tvPhotograph);//ic_take_photo
+        mTvPhotograph = (TextView) findViewById(R.id.tvPhotograph);//拍照
         mTvAlbums = (TextView) findViewById(R.id.tvAlbums);//相册
         tvTitle = (TextView) findViewById(R.id.tvTitle);//标题
 
@@ -117,7 +117,7 @@ public class ChooseDialogActivity extends BaseActivity {
 
             @Override
             public void onClick(View v) {
-                if (v.getId() == R.id.tvPhotograph) {
+                if (v.getId() == R.id.tvPhotograph) {// 拍照
                     Uri imageUri = null;
                     Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     imageUri = Uri.fromFile(mCaptureFile);

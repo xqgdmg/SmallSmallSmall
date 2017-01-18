@@ -17,7 +17,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true" />
 
-    <!-- <CheckBox
+     <CheckBox
         android:id="@+id/list_item_cb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,6 +25,6 @@
         android:layout_alignTop="@id/list_item_iv"
         android:button="@drawable/check_box_selector"
         android:clickable="false"
-        android:focusable="false" /> -->
+        android:focusable="false" />
 
 </RelativeLayout>
