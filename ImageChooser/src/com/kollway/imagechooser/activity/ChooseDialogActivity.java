@@ -155,6 +155,8 @@ public class ChooseDialogActivity extends BaseActivity {
         if (resultCode != RESULT_OK) {
             return;
         }
+
+        // 不裁剪
         if (requestCode != REQUEST_CROP) {
             if (requestCode == REQUEST_ALBUM && data == null) {
                 return;
