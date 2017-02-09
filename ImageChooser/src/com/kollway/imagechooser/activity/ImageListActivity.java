@@ -46,7 +46,7 @@ public class ImageListActivity extends Activity implements OnItemClickListener {
     private GridView mImagesGv = null;
 
     /**
-     * 图片地址数据源
+     * 图片地址数据源,系统本身
      */
     private ArrayList<String> mImages = new ArrayList<String>();
 
@@ -57,8 +57,9 @@ public class ImageListActivity extends Activity implements OnItemClickListener {
 
 
     // add 保存照片 path 集合
-    private ArrayList<String> picPathList = new ArrayList<String>();
     private TextView mTvConfirm;
+    public static TextView mTvSelectNum;
+    public static TextView mTvCancelSelect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +83,10 @@ public class ImageListActivity extends Activity implements OnItemClickListener {
     private void initView() {
         mImagesGv = (GridView)findViewById(R.id.images_gv);
         mTvConfirm = (TextView)findViewById(R.id.tv_confirm);
+        mTvSelectNum = (TextView)findViewById(R.id.tvSelectNum);
+        mTvCancelSelect = (TextView)findViewById(R.id.tvCancelSelect);
 
+        // 确定
         mTvConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,6 +95,18 @@ public class ImageListActivity extends Activity implements OnItemClickListener {
                 setResult(RESULT_OK, intent);
 
                 finish();
+            }
+        });
+
+        // 取消选中
+        mTvCancelSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mImageAdapter.mSelectedList.clear();
+                mImageAdapter.mCheckBox.clear();
+                mImageAdapter.picNumCount = 0;
+                mTvSelectNum.setText("已选中（0" + "）");// 选中的
+                mImageAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -113,7 +129,6 @@ public class ImageListActivity extends Activity implements OnItemClickListener {
     public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
 
         mMyIteMClick.onMyIteMClick(position);
-
     }
 
     /**

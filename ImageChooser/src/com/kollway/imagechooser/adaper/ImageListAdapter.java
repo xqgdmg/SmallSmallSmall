@@ -51,7 +51,7 @@ public class ImageListAdapter extends BaseAdapter {
     public ArrayList<String> mSelectedList = new ArrayList<String>();
 
     // help checkbox
-    private ArrayList<String> mCheckBox = new ArrayList<String>();
+    public ArrayList<String> mCheckBox = new ArrayList<String>();
 
     /**
      * 容器
@@ -59,7 +59,7 @@ public class ImageListAdapter extends BaseAdapter {
     private View mContainer = null;
 
     private int picNumLimit = 5;
-    private int picNumCount = 0;
+    public int picNumCount = 0;
 
     public ImageListAdapter(Context context, ArrayList<String> list, View container) {
         mDataList = list;
@@ -93,6 +93,8 @@ public class ImageListAdapter extends BaseAdapter {
                     mSelectedList.add(mDataList.get(Integer.parseInt(position2 + "")));// mDataList.get(Integer.getInteger(position2 + "" ))
                     picNumCount ++;
                 }
+
+                ImageListActivity.mTvSelectNum.setText("已选中（" + mSelectedList.size() + "）");// 选中的数量
 
                 notifyDataSetChanged();
             }
