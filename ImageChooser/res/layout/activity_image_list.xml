@@ -1,26 +1,22 @@
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ChooseDialogActivity" >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <Button
-            android:layout_alignParentRight="true"
-            android:id="@+id/btn"
-            android:layout_width="75dp"
+        <TextView
+            android:id="@+id/tv_top_title"
+            android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:text="确定"/>
+            android:text="tv_top_title"/>
 
         <GridView
-            android:layout_below="@+id/btn"
-
             android:id="@+id/images_gv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:cacheColorHint="@android:color/transparent"
             android:gravity="center"
             android:horizontalSpacing="@dimen/spacing_medium"
@@ -30,8 +26,50 @@
             android:stretchMode="columnWidth"
             android:verticalSpacing="@dimen/spacing_medium" >
         </GridView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tvPreview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:enabled="true"
+            android:gravity="center"
+            android:text="预览"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="100dp"
+            android:layout_height="34dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:enabled="true"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="确定" />
+
+        <TextView
+            android:id="@+id/tvCancelSelect"
+            android:layout_toLeftOf="@+id/tv_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:enabled="true"
+            android:gravity="center"
+            android:text="取消选中"
+            android:textSize="14sp" />
+
+
     </RelativeLayout>
 
     <include layout="@layout/loading_layout" />
 
-</merge>
+</LinearLayout>

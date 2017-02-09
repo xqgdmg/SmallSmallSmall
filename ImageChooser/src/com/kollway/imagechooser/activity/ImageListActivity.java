@@ -8,22 +8,20 @@
 
 package com.kollway.imagechooser.activity;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.GridView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.kollway.imagechooser.R;
 import com.kollway.imagechooser.adaper.ImageListAdapter;
+
+import java.util.ArrayList;
 
 /**
  * 某个文件夹下的所有图片列表
@@ -60,7 +58,7 @@ public class ImageListActivity extends Activity implements OnItemClickListener {
 
     // add 保存照片 path 集合
     private ArrayList<String> picPathList = new ArrayList<String>();
-    private Button btn;
+    private TextView mTvConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +81,9 @@ public class ImageListActivity extends Activity implements OnItemClickListener {
      */
     private void initView() {
         mImagesGv = (GridView)findViewById(R.id.images_gv);
-        btn = (Button)findViewById(R.id.btn);
+        mTvConfirm = (TextView)findViewById(R.id.tv_confirm);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        mTvConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -109,7 +107,7 @@ public class ImageListActivity extends Activity implements OnItemClickListener {
     }
 
     /**
-     * todo 选择多张图片,选完到裁剪的页面
+     * todo 选完到裁剪的页面
      */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
